@@ -1,11 +1,4 @@
 {
-    "builds": [
-      {
-        "src": "nuxt.config.ts",
-        "use": "@vercel/static-build",
-        "config": { "distDir": "dist" }
-      }
-    ],
     "routes": [
       {
         "src": "/(.*)",
