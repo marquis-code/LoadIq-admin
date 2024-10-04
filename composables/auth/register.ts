@@ -15,7 +15,7 @@ export const use_auth_register = () => {
 
     const payload = {
       bvn: credential.bvn.value,
-      phone: credential.phone.value,
+      phoneNumber: credential.phone.value,
     };
 
     try {
@@ -24,7 +24,13 @@ export const use_auth_register = () => {
       loading.value = false;
 
       if (res.type !== "ERROR") {
-        router.push(`/verify-account?userId=${res.data.id}`);
+        showToast({
+          title: "Success",
+          message: res.data.message,
+          toastType: "success",
+          duration: 3000,
+        });
+        router.push(`/verify-account?userId=${res.data.data.userId}`);
       } else {
         console.log(res.data, 'error here')
         showToast({
@@ -46,8 +52,11 @@ export const use_auth_register = () => {
   };
 
   const isFormDisabled = computed(() => {
-    return loading.value || !credential.bvn.value || !credential.phone.value;
+    const phoneValid = credential.phone.value && credential.phone.value.length === 11;
+    const bvnValid = credential.bvn.value && credential.bvn.value.length === 11;
+    return loading.value || !bvnValid || !phoneValid;
   });
+  
 
   return { credential, register, loading, isFormDisabled };
 };

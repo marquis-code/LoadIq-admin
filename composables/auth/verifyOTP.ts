@@ -5,27 +5,26 @@ import { useCustomToast } from "@/composables/core/useCustomToast";
 // Encryption key - Store this securely
 const secretKey = "LoanIQEncryption";
 
+const credential = {
+  userId: ref(""),
+  code: ref(""),
+} as any;
+
+
 export const use_auth_verify_otp = () => {
   const Router = useRouter();
   const { showToast } = useCustomToast();
-  const credential = {
-    userId: ref(""),
-    code: ref(""),
-  } as any;
+  const route = useRoute()
 
   const loading = ref(false);
-  const errorMessage = ref("");
 
   const verify_OTP = async () => {
     loading.value = true;
-    errorMessage.value = "";
 
     try {
-      const otp = String(credential?.otp?.value?.join(""));
-
       const res = (await auth_api.$_verify_otp({
-        email: credential.userId.value,
-        otp,
+        userId: route.query.userId,
+        code: credential.code.value
       })) as any;
 
       loading.value = false;
@@ -33,39 +32,35 @@ export const use_auth_verify_otp = () => {
       if (res.type !== "ERROR") {
         showToast({
           title: "Success",
-          message: "OTP was verified successfully",
+          message: res.data.message,
           toastType: "success",
           duration: 3000,
         });
 
         // Encrypt and store userId and otp in localStorage
-        const encryptedUserId = CryptoJS.AES.encrypt(
-          res?.data?.id,
-          secretKey
-        ).toString();
-        const encryptedOtp = CryptoJS.AES.encrypt(otp, secretKey).toString();
+        const encryptedUserId = CryptoJS.AES.encrypt(res?.data?.data?.onboardingId, secretKey).toString();
+        const encryptedOtp = CryptoJS.AES.encrypt(credential?.code?.value, secretKey).toString();
         localStorage.setItem("userId", encryptedUserId);
         localStorage.setItem("otp", encryptedOtp);
 
-        Router.push(`/create-password?userId=${res?.data?.id}`);
+        Router.push(`/create-password?userId=${res?.data?.data.onboardingId}`);
       } else {
+        console.log(res.data)
         showToast({
           title: "Error",
-          message: errorMessage.value,
+          message: res.data.message,
           toastType: "error",
           duration: 3000,
         });
-        return { success: false, error: errorMessage.value };
       }
     } catch (error: any) {
       loading.value = false;
       showToast({
-        title: error?.message || "An unexpected error occurred.",
-        message: errorMessage.value,
+        title: "Error",
+        message: error.message,
         toastType: "error",
         duration: 3000,
       });
-      return { success: false, error: errorMessage.value };
     }
   };
 

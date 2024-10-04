@@ -40,7 +40,7 @@ export const use_recover_passcode = () => {
       } else {
         showToast({
           title: "Error",
-          message: res.message || "Failed to send OTP",
+          message: res.data.message || "Failed to send OTP",
           toastType: "error",
           duration: 3000,
         });

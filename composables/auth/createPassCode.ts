@@ -6,12 +6,14 @@ import { useCustomToast } from "@/composables/core/useCustomToast";
 const secretKey = "LoanIQEncryption";
 
 const credential = {
+  
   passcode: ref(""),
 };
 
 export const use_create_passcode = () => {
   const loading = ref(false);
   const { showToast } = useCustomToast();
+  const router = useRouter()
   const getEncryptedData = () => {
     const encryptedUserId = localStorage.getItem("userId");
     const encryptedOtp = localStorage.getItem("otp");
@@ -49,10 +51,12 @@ export const use_create_passcode = () => {
           duration: 3000,
         });
         useUser().createUser(res.data);
+        router.push('/account-creation-success')
       } else {
+        console.log(res.data, 'date here')
         showToast({
           title: "Error",
-          message: res.message,
+          message: res.data.message,
           toastType: "error",
           duration: 3000,
         });

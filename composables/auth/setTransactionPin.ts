@@ -39,11 +39,11 @@ export const use_set_transaction_pin = () => {
           duration: 3000,
         });
 
-        Router.push("/dashboard");
+        Router.push("/account-success");
       } else {
         showToast({
           title: "Error",
-          message: res.message || "Failed to set pin",
+          message: res.data.message || "Failed to set pin",
           toastType: "error",
           duration: 3000,
         });
