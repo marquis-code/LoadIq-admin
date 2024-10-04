@@ -19,6 +19,7 @@
     "webpack": "^5.95.0"
   },
   "dependencies": {
+    "nuxi": "latest",
     "@nuxtjs/moment": "^1.6.1",
     "@nuxtjs/tailwindcss": "^6.11.4",
     "@vueuse/core": "^10.9.0",
@@ -35,5 +36,8 @@
     "vue3-apexcharts": "^1.6.0",
     "vue3-datepicker": "^0.4.0",
     "vue3-toastify": "^0.2.3"
+  },
+  "engines": {
+    "node": ">=16.0.0"
   }
 }
