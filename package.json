@@ -9,7 +9,7 @@
     "build": "nuxt build",
     "start": "node .output/server/index.mjs",
     "generate": "nuxt generate",
-    "preview": "nuxt preview"
+    "preview": "nuxt pr                    eview"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.15",
