@@ -9,7 +9,7 @@
     "build": "nuxt build",
     "start": "node .output/server/index.mjs",
     "generate": "nuxt generate",
-    "preview": "nuxt pr                    eview"
+    "preview": "nuxt preview"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.15",
@@ -38,6 +38,6 @@
     "vue3-toastify": "^0.2.3"
   },
   "engines": {
-    "node": ">=16.0.0"
+    "node": "20.x"
   }
 }
