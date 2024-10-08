@@ -2,7 +2,7 @@ import { auth_api } from "@/apiFactory/modules/auth";
 import { useCustomToast } from "@/composables/core/useCustomToast";
 const credential = {
   bvn: ref(""),
-  phone: ref(""),
+  email: ref(""),
 };
 
 export const use_auth_register = () => {
@@ -15,7 +15,7 @@ export const use_auth_register = () => {
 
     const payload = {
       bvn: credential.bvn.value,
-      phoneNumber: credential.phone.value,
+      email: credential.email.value,
     };
 
     try {
@@ -52,9 +52,10 @@ export const use_auth_register = () => {
   };
 
   const isFormDisabled = computed(() => {
-    const phoneValid = credential.phone.value && credential.phone.value.length === 11;
+    const emailValid = credential.email.value
     const bvnValid = credential.bvn.value && credential.bvn.value.length === 11;
-    return loading.value || !bvnValid || !phoneValid;
+    return loading.value || !bvnValid || !emailValid
+    // return true
   });
   
 

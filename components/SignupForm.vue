@@ -16,13 +16,13 @@
           <div class="mb-4">
             <label
               class="block text-[#7D8799] font-medium mb-1 text-sm"
-              for="phone"
-              >Enter Your Phone Number</label
+              for="email"
+              >Enter Your Email</label
             >
             <input
-              type="text"
-              id="phone"
-              v-model="credential.phone.value"
+              type="email"
+              id="email"
+              v-model="credential.email.value"
               class="w-full px-4 py-4 bg-[#F4F5F7] outline-none border-[0.5px] border-[#F4F5F7] rounded-md focus:outline-none focus:border-green-500"
             />
           </div>
@@ -33,7 +33,7 @@
               >Enter your BVN</label
             >
             <input
-              type="phone"
+              type="number"
               id="bvn"
               v-model="credential.bvn.value"
               class="w-full px-4 py-4 bg-[#F4F5F7] outline-none border-[0.5px] border-[#F4F5F7] rounded-md focus:outline-none focus:border-green-500"
@@ -43,13 +43,19 @@
             </p>
           </div>
           <div class="pt-6">
-            <button
+            <!-- <button
               :disabled="loading || isFormDisabled"
               type="submit"
               class="w-full disabled:cursor-not-allowed disabled:opacity-25 bg-[#2F6D67] text-white py-3.5 rounded-md hover:bg-[#2F6D67] transition"
             >
               {{ loading ? "processing..." : "Create New Account" }}
-            </button>
+            </button> -->
+            <button
+            type="submit"
+            class="w-full bg-[#2F6D67] text-white py-3.5 rounded-md hover:bg-[#2F6D67] transition"
+          >
+            {{ loading ? "processing..." : "Create New Account" }}
+          </button>
           </div>
         </form>
         <div class="text-center mt-4 flex items-center gap-y-4 flex-col w-full">

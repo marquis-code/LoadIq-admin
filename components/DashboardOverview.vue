@@ -10,7 +10,7 @@
               <div class="text-left w-full">
                <div class="flex justify-between items-center w-full">
                 <div>
-                    <h2 class="text-[#2E3A59]">SAVINGS ACCOUNT</h2>
+                    <h2 class="text-[#2E3A59]">WALLET ACCOUNT</h2>
                 </div>
                 <div class="bg-[#020C24] flex items-center py-2 px-3 rounded-lg mt-4 sm:mt-0 sm:ml-4">
                     <p class="font- text-sm text-white flex items-center gap-x-3">
@@ -144,7 +144,7 @@
             <div class="bg-[#D8FF6F] lg:w-96 h-96 border-white border-2 rounded-3xl p-6 lg:p-8 relative flex flex-col justify-between">
                 <!-- Title -->
                 <h3 class="text-2xl lg:text-2xl font-medium text-[#2E3A59]  max-w-xs">
-                    Set up a Fixed Deposit Account
+                    Set up an Investment Account
                 </h3>
             
                 <!-- Images Section -->
